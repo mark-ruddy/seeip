@@ -2,7 +2,7 @@ mod config;
 mod utils;
 
 // -- IP Address calls --
-/// Return either the callers IPv4 or IPv6 address
+/// Return the callers IPv4 or IPv6 address
 pub fn get_ip() -> Result<String, Box<dyn std::error::Error>> {
     let seeip_cfg = config::default_config();
     Ok(utils::call_addr(seeip_cfg)?)
@@ -64,6 +64,7 @@ pub fn get_geo_v6(ip_addr: &str) -> Result<utils::GeoInfo, Box<dyn std::error::E
 mod tests {
     use std::net::{IpAddr};
 
+    // -- IP Address calls tests --
     #[test]
     fn get_ip_valid() {
         match super::get_ip() {
@@ -93,6 +94,56 @@ mod tests {
                 Ok(ip) => assert_eq!(ip.is_ipv6(), true),
                 Err(_) => assert!(false),
             },
+            Err(_) => assert!(false),
+        }
+    }
+
+    // -- GeoIP calls tests --
+    #[test]
+    fn get_caller_geo_valid() {
+        match super::get_caller_geo() {
+            // caller tests don't check any info as each caller can be completely different
+            Ok(_) => assert!(true),
+            Err(_) => assert!(false)
+        }
+    }
+
+    #[test]
+    fn get_caller_geo_v4_valid() {
+        match super::get_caller_geo_v4() {
+            Ok(_) => assert!(true),
+            Err(_) => assert!(false),
+        }
+    }
+
+    #[test]
+    fn get_caller_geo_v6_valid() {
+        match super::get_caller_geo_v6() {
+            Ok(_) => assert!(true),
+            Err(_) => assert!(false),
+        }
+    }
+
+    #[test]
+    fn get_geo_valid() {
+        match super::get_geo("208.67.222.222") {
+            Ok(info) => assert_eq!(info.country_code, "US"),
+            Err(_) => assert!(false),
+        }
+    }
+
+    #[test]
+    fn get_geo_v4_valid() {
+        match super::get_geo_v4("208.67.222.222") {
+            Ok(info) => assert_eq!(info.country_code, "US"),
+            Err(_) => assert!(false),
+        }
+    }
+
+    #[test]
+    fn get_geo_v6_valid() {
+        match super::get_geo_v6("2620:0:ccc::2") {
+            Ok(info) => assert_eq!(info.country_code, "US"),
             Err(_) => assert!(false),
         }
     }

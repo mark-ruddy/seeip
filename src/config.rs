@@ -39,7 +39,7 @@ pub fn ipv6_config() -> Config {
 pub fn geo_default_config() -> Config {
     return Config {
         ip_kind: IpKind::Both,
-        url: String::from("https://ip.seeip.org/geo")
+        url: String::from("https://ip.seeip.org/geoip")
     }
 }
 
@@ -47,7 +47,7 @@ pub fn geo_default_config() -> Config {
 pub fn geo_ipv4_config() -> Config {
     return Config {
         ip_kind: IpKind::V4,
-        url: String::from("https://ip4.seeip.org/geo")
+        url: String::from("https://ip4.seeip.org/geoip")
     }
 }
 
@@ -55,7 +55,7 @@ pub fn geo_ipv4_config() -> Config {
 pub fn geo_ipv6_config() -> Config {
     return Config {
         ip_kind: IpKind::V6,
-        url: String::from("https://ip6.seeip.org/geo")
+        url: String::from("https://ip6.seeip.org/geoip")
     }
 }
 
