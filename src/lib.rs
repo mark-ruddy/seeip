@@ -137,14 +137,13 @@ mod tests {
         }
     }
 
-    // Commented out flaky test since many hosts(e.g. Github Actions) don't have a caller IPv6 address
-    /*#[test]
+    #[test]
     fn get_caller_geo_v6_valid() {
         match super::get_caller_geo_v6() {
             Ok(_) => assert!(true),
             Err(_) => assert!(false),
         }
-    }*/
+    }
 
     #[test]
     fn get_geo_valid() {
