@@ -168,4 +168,12 @@ mod tests {
             Err(_) => assert!(false),
         }
     }
+
+    #[test]
+    fn get_geo_invalid() {
+        match super::get_geo("42") {
+            Ok(_) => assert!(false),
+            Err(_) => assert!(true),
+        }
+    }
 }

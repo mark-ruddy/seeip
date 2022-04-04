@@ -48,13 +48,29 @@ impl Default for GeoInfo {
     }
 }
 
+fn is_resp_successful(
+    resp: &reqwest::blocking::Response,
+) -> Result<(), Box<dyn std::error::Error>> {
+    if !resp.status().is_success() {
+        return Err(format!(
+            "Non-successful status code received: {}",
+            resp.status().as_str()
+        ))?;
+    }
+    Ok(())
+}
+
 /// Call the IP address endpoint and return the IP as a String
 pub fn call_addr(seeip_cfg: config::Config) -> Result<String, Box<dyn std::error::Error>> {
-    Ok(reqwest::blocking::get(seeip_cfg.url)?.text()?)
+    let resp = reqwest::blocking::get(seeip_cfg.url)?;
+    is_resp_successful(&resp)?;
+    Ok(resp.text()?)
 }
 
 /// Call the Geographical endpoint and return info in struct
 pub fn call_geo(seeip_cfg: config::Config) -> Result<GeoInfo, Box<dyn std::error::Error>> {
-    let geo_resp: GeoInfo = reqwest::blocking::get(seeip_cfg.url)?.json()?;
+    let resp = reqwest::blocking::get(seeip_cfg.url)?;
+    is_resp_successful(&resp)?;
+    let geo_resp: GeoInfo = resp.json()?;
     Ok(geo_resp)
 }
