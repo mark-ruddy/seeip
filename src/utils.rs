@@ -4,7 +4,6 @@ use reqwest;
 use super::config;
 
 /// Struct for parsing results from the seeip geographical API
-/// See https://seeip.org/ for details
 #[derive(Deserialize)]
 #[serde(default)]
 pub struct GeoInfo {
@@ -29,7 +28,7 @@ pub struct GeoInfo {
 impl Default for GeoInfo {
     fn default() -> GeoInfo {
         GeoInfo {
-            ip: String::from("0.0.0.0"),
+            ip: String::from(""),
             country: String::from(""),
             city: String::from(""),
             region: String::from(""),
