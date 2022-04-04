@@ -83,7 +83,7 @@ pub fn get_geo_v6(ip_addr: &str) -> Result<utils::GeoInfo, Box<dyn std::error::E
 
 #[cfg(test)]
 mod tests {
-    use std::net::{IpAddr};
+    use std::net::IpAddr;
 
     // -- IP Address calls tests --
     #[test]
@@ -125,7 +125,7 @@ mod tests {
         match super::get_caller_geo() {
             // caller tests don't check any info as each caller can be completely different
             Ok(_) => assert!(true),
-            Err(_) => assert!(false)
+            Err(_) => assert!(false),
         }
     }
 
@@ -165,7 +165,7 @@ mod tests {
     fn get_geo_v6_valid() {
         match super::get_geo_v6("2620:0:ccc::2") {
             Ok(info) => assert_eq!(info.country_code, "US"),
-            Err(_) => assert!(false)
+            Err(_) => assert!(false),
         }
     }
 }

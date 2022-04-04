@@ -15,48 +15,48 @@ pub struct Config {
 pub fn default_config() -> Config {
     return Config {
         ip_kind: IpKind::Both,
-        url: String::from("https://ip.seeip.org")
-    }
+        url: String::from("https://ip.seeip.org"),
+    };
 }
 
 /// Only use IPv4 configuration
 pub fn ipv4_config() -> Config {
     return Config {
         ip_kind: IpKind::V4,
-        url: String::from("https://ip4.seeip.org")
-    }
+        url: String::from("https://ip4.seeip.org"),
+    };
 }
 
 /// Only use IPv6 configuration
 pub fn ipv6_config() -> Config {
     return Config {
         ip_kind: IpKind::V6,
-        url: String::from("https://ip6.seeip.org")
-    }
+        url: String::from("https://ip6.seeip.org"),
+    };
 }
 
 /// The default configuration for geo which supports both IPv4 and IPv6
 pub fn geo_default_config() -> Config {
     return Config {
         ip_kind: IpKind::Both,
-        url: String::from("https://ip.seeip.org/geoip")
-    }
+        url: String::from("https://ip.seeip.org/geoip"),
+    };
 }
 
 /// Only use IPv4 configuration for geo
 pub fn geo_ipv4_config() -> Config {
     return Config {
         ip_kind: IpKind::V4,
-        url: String::from("https://ip4.seeip.org/geoip")
-    }
+        url: String::from("https://ip4.seeip.org/geoip"),
+    };
 }
 
 /// Only use IPv6 configuration for geo
 pub fn geo_ipv6_config() -> Config {
     return Config {
         ip_kind: IpKind::V6,
-        url: String::from("https://ip6.seeip.org/geoip")
-    }
+        url: String::from("https://ip6.seeip.org/geoip"),
+    };
 }
 
 // Append an IP to an existing config

@@ -2,9 +2,11 @@
 name = "seeip"
 version = "1.0.0"
 edition = "2021"
-
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "Rust Wrapper for the IP Info https://seeip.org/ API"
+homepage = "https://github.com/mark-ruddy/seeip"
+repository = "https://github.com/mark-ruddy/seeip"
+license-file = "LICENSE.txt"
+readme = "README.md"
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
