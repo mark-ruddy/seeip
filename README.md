@@ -2,8 +2,8 @@
 
 Rust Wrapper for the IP Info <https://seeip.org/> API
 ## Examples
-All of the below examples support both IPv4 and IPv6 addresses.
-If you specifically want to use IPv4 or IPv6 use their `_v4()` and `_v6()` equivalents.
+All of the below examples support both IPv4 and IPv6 addresses.  
+To specifically use either IPv4 or IPv6 use their `_v4()` and `_v6()` equivalents.
 #### Get the caller's IP address
 ```rust
 let my_ip = seeip::get_ip().unwrap();
@@ -22,7 +22,7 @@ println!("Country matching this IP: {}", geo_info.country);
 ```
 
 ## Testing
-The test involve making actual API calls. This means that they can fail if for example you make an IPv6-only call when your host does not support IPv6:
+The tests involve making actual API calls. This means that they can fail if you make an IPv6-only call when your host does not support IPv6:
 
 If you are on a host supporting both IPv4 and IPv6: `cargo test --verbose`  
 For a host that only supports IPv4: `cargo test --verbose -- --skip v6`  
