@@ -20,3 +20,10 @@ println!("Country my IP matches: {}", my_geo_info.country);
 let geo_info = seeip::get_geo("208.67.222.222").unwrap();
 println!("Country matching this IP: {}", geo_info.country);
 ```
+
+## Testing
+The test involve making actual API calls. This means that they can fail if for example you make an IPv6-only call when your host does not support IPv6:
+
+If you are on a host supporting both IPv4 and IPv6: `cargo test --verbose`  
+For a host that only supports IPv4: `cargo test --verbose -- --skip v6`  
+For a host that only supports IPv6: `cargo test --verbose -- --skip v4`  

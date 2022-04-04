@@ -15,5 +15,6 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@v2
+        # run all tests but skip any containing "v6" since github actions host is using IPv4 only
       - name: Run tests
-        run: cargo test --verbose
+        run: cargo test --verbose -- --skip v6
