@@ -21,7 +21,7 @@ pub struct GeoInfo {
     pub dma_code: i32,
     pub area_code: i32,
     pub offset: i32,
-    pub asn i32,
+    pub asn: i32,
     pub longitude: f64,
     pub latitude: f64,
 }
