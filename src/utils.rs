@@ -21,6 +21,7 @@ pub struct GeoInfo {
     pub dma_code: i32,
     pub area_code: i32,
     pub offset: i32,
+    pub asn i32,
     pub longitude: f64,
     pub latitude: f64,
 }
@@ -42,6 +43,7 @@ impl Default for GeoInfo {
             dma_code: 0,
             area_code: 0,
             offset: 0,
+            asn: 0,
             longitude: 0.0,
             latitude: 0.0,
         }
