@@ -1,6 +1,8 @@
 # seeip
 
-Rust Wrapper for the IP Info <https://seeip.org/> API
+Rust Wrapper for the IP Info <https://seeip.org/> API  
+See example project using this `seeip` library: https://github.com/mark-ruddy/ipfetch  
+
 ## Examples
 All of the below examples support both IPv4 and IPv6 addresses.  
 To specifically use either IPv4 or IPv6 use their `_v4()` and `_v6()` equivalents.
