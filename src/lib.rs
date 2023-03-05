@@ -91,7 +91,7 @@ mod tests {
         match super::get_ip() {
             Ok(ip) => match ip.parse::<IpAddr>() {
                 Ok(_) => assert!(true),
-                Err(_) => assert!(false),
+                Err(e) => panic!("{}", e),
             },
             Err(_) => assert!(false),
         }
@@ -102,9 +102,9 @@ mod tests {
         match super::get_ip_v4() {
             Ok(ip) => match ip.parse::<IpAddr>() {
                 Ok(ip) => assert_eq!(ip.is_ipv4(), true),
-                Err(_) => assert!(false),
+                Err(e) => panic!("{}", e),
             },
-            Err(_) => assert!(false),
+            Err(e) => panic!("{}", e),
         }
     }
 
@@ -113,43 +113,33 @@ mod tests {
         match super::get_ip_v6() {
             Ok(ip) => match ip.parse::<IpAddr>() {
                 Ok(ip) => assert_eq!(ip.is_ipv6(), true),
-                Err(_) => assert!(false),
+                Err(e) => panic!("{}", e),
             },
-            Err(_) => assert!(false),
+            Err(e) => panic!("{}", e),
         }
     }
 
     // -- GeoIP calls tests --
     #[test]
     fn get_caller_geo_valid() {
-        match super::get_caller_geo() {
-            // caller tests don't check any info as each caller can be completely different
-            Ok(_) => assert!(true),
-            Err(_) => assert!(false),
-        }
+        super::get_caller_geo().unwrap();
     }
 
     #[test]
     fn get_caller_geo_v4_valid() {
-        match super::get_caller_geo_v4() {
-            Ok(_) => assert!(true),
-            Err(_) => assert!(false),
-        }
+        super::get_caller_geo_v4().unwrap();
     }
 
     #[test]
     fn get_caller_geo_v6_valid() {
-        match super::get_caller_geo_v6() {
-            Ok(_) => assert!(true),
-            Err(_) => assert!(false),
-        }
+        super::get_caller_geo_v6().unwrap();
     }
 
     #[test]
     fn get_geo_valid() {
         match super::get_geo("208.67.222.222") {
             Ok(info) => assert_eq!(info.country_code, "US"),
-            Err(_) => assert!(false),
+            Err(e) => panic!("{}", e),
         }
     }
 
@@ -157,7 +147,7 @@ mod tests {
     fn get_geo_v4_valid() {
         match super::get_geo_v4("208.67.222.222") {
             Ok(info) => assert_eq!(info.country_code, "US"),
-            Err(_) => assert!(false),
+            Err(e) => panic!("{}", e),
         }
     }
 
@@ -165,15 +155,12 @@ mod tests {
     fn get_geo_v6_valid() {
         match super::get_geo_v6("2620:0:ccc::2") {
             Ok(info) => assert_eq!(info.country_code, "US"),
-            Err(_) => assert!(false),
+            Err(e) => panic!("{}", e),
         }
     }
 
     #[test]
     fn get_geo_invalid() {
-        match super::get_geo("42") {
-            Ok(_) => assert!(false),
-            Err(_) => assert!(true),
-        }
+        super::get_geo("42").unwrap();
     }
 }

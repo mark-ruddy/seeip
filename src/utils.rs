@@ -1,7 +1,10 @@
 use reqwest;
 use serde::Deserialize;
+use std::time::Duration;
 
 use super::config;
+
+const REQUEST_TIMEOUT_SECS: u64 = 5;
 
 /// Struct for parsing results from the seeip geographical API
 #[derive(Deserialize)]
@@ -64,14 +67,22 @@ fn is_resp_successful(
 
 /// Call the IP address endpoint and return the IP as a String
 pub fn call_addr(seeip_cfg: config::Config) -> Result<String, Box<dyn std::error::Error>> {
-    let resp = reqwest::blocking::get(seeip_cfg.url)?;
+    let client = reqwest::blocking::Client::builder()
+        .timeout(Duration::from_secs(REQUEST_TIMEOUT_SECS))
+        .connect_timeout(Duration::from_secs(REQUEST_TIMEOUT_SECS))
+        .build()?;
+    let resp = client.get(seeip_cfg.url).send()?;
     is_resp_successful(&resp)?;
     Ok(resp.text()?)
 }
 
 /// Call the Geographical endpoint and return info in struct
 pub fn call_geo(seeip_cfg: config::Config) -> Result<GeoInfo, Box<dyn std::error::Error>> {
-    let resp = reqwest::blocking::get(seeip_cfg.url)?;
+    let client = reqwest::blocking::Client::builder()
+        .timeout(Duration::from_secs(REQUEST_TIMEOUT_SECS))
+        .connect_timeout(Duration::from_secs(REQUEST_TIMEOUT_SECS))
+        .build()?;
+    let resp = client.get(seeip_cfg.url).send()?;
     is_resp_successful(&resp)?;
     let geo_resp: GeoInfo = resp.json()?;
     Ok(geo_resp)
