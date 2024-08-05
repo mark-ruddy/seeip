@@ -5,7 +5,7 @@ edition = "2021"
 description = "Rust Wrapper for the IP Info https://seeip.org/ API"
 homepage = "https://github.com/mark-ruddy/seeip"
 repository = "https://github.com/mark-ruddy/seeip"
-license-file = "LICENSE.txt"
+license-file = "LICENSE"
 readme = "README.md"
 
 [dependencies]
