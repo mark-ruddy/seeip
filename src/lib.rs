@@ -161,6 +161,9 @@ mod tests {
 
     #[test]
     fn get_geo_invalid() {
-        super::get_geo("42").unwrap();
+        match super::get_geo("42") {
+            Ok(_) => panic!("Should be error for invalid geo request"),
+            Err(_) => assert!(true),
+        }
     }
 }
